@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import "./Splash.css";
 
 export default function Splash({ onStart }) {
   const rootRef = useRef(null);
@@ -8,8 +9,7 @@ export default function Splash({ onStart }) {
     const root = rootRef.current;
     if (!root) return;
 
-    // Allow horizontal gestures without the browser stealing them
-    root.style.touchAction = "pan-y";
+    root.style.touchAction = "pan-y"; // allow vertical scrolling, block horizontal interference
 
     const onPointerDown = (e) => {
       startPos.current = {
@@ -27,25 +27,21 @@ export default function Splash({ onStart }) {
       const dx = endX - startPos.current.x;
       const dy = endY - startPos.current.y;
 
-      // Require a mostly-horizontal rightward swipe of at least 60px
-      if (dx > 60 && Math.abs(dy) < 40) {
+      // Require a mostly-horizontal LEFT swipe (dx < -60)
+      if (dx < -60 && Math.abs(dy) < 40) {
         onStart?.();
       }
 
       startPos.current.active = false;
     };
 
-    // Mouse/trackpad
     root.addEventListener("mousedown", onPointerDown);
     window.addEventListener("mouseup", onPointerUp);
-
-    // Touch
     root.addEventListener("touchstart", onPointerDown, { passive: true });
     window.addEventListener("touchend", onPointerUp, { passive: true });
 
-    // Keyboard (accessibility & desktop)
     const onKey = (e) => {
-      if (e.key === "ArrowRight" || e.key === "Enter" || e.key === " ") {
+      if (e.key === "ArrowLeft" || e.key === "Enter" || e.key === " ") {
         onStart?.();
       }
     };
@@ -61,7 +57,12 @@ export default function Splash({ onStart }) {
   }, [onStart]);
 
   return (
-    <div className="splash" ref={rootRef} tabIndex={0} aria-label="Splash screen. Swipe right or press Enter to begin.">
+    <div
+      className="splash"
+      ref={rootRef}
+      tabIndex={0}
+      aria-label="Splash screen. Swipe left or press Enter to begin."
+    >
       <div className="splash-card">
         <h1>Welcome to David&apos;s Pillow Emporium!</h1>
         <p>Text me the names of the pillow cases you want. Inventory is limited.</p>
@@ -73,11 +74,11 @@ export default function Splash({ onStart }) {
         </ul>
 
         <button className="primary" onClick={onStart}>
-          Begin <span className="arrow">→</span>
+          Begin <span className="arrow">←</span>
         </button>
 
         <div className="swipe-hint">
-          Swipe right <span className="arrow bounce">→</span>
+          Swipe left <span className="arrow bounce">←</span>
         </div>
       </div>
     </div>

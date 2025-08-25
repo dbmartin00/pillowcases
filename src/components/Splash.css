@@ -1,0 +1,13 @@
+/* Splash.css */
+
+.swipe-hint .arrow.bounce {
+  display: inline-block;
+  animation: nudge 1.2s ease-in-out infinite;
+}
+
+@keyframes nudge {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
