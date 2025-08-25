@@ -1,4 +1,31 @@
+import { useEffect } from "react";
+
 export default function Splash({ onStart }) {
+  useEffect(() => {
+    const handleSwipe = (e) => {
+      if (e.type === "touchend") {
+        const touch = e.changedTouches[0];
+        const diffX = touch.clientX - startX;
+        if (diffX > 50) {
+          onStart(); // swipe right
+        }
+      }
+    };
+
+    let startX = 0;
+    const handleTouchStart = (e) => {
+      startX = e.touches[0].clientX;
+    };
+
+    document.addEventListener("touchstart", handleTouchStart);
+    document.addEventListener("touchend", handleSwipe);
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchend", handleSwipe);
+    };
+  }, [onStart]);
+
   return (
     <div className="splash">
       <div className="splash-card">
@@ -13,9 +40,9 @@ export default function Splash({ onStart }) {
           <li>Tumble dry or at low heat. Iron on low heat.</li>
         </ul>
         <button className="primary" onClick={onStart}>
-          Swipe right → to begin
+          Begin <span className="arrow">→</span>
         </button>
-        <div className="swipe-hint">→ swipe right</div>
+        <div className="swipe-hint">Swipe right <span className="arrow">→</span></div>
       </div>
     </div>
   );
