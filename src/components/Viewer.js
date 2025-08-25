@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 
 function toPngPath(filename) {
-  return `${process.env.PUBLIC_URL}/pillowcase_images/${filename.replace(/\.(heic|heif|jpg|jpeg)$/i, ".png")}`;
+  return `${process.env.PUBLIC_URL}/pillowcase_images/${filename.replace(/\.(heic|heif|jpg|jpeg)$/i, ".jpg")}`;
 }
 
 export default function Viewer({ item, index, total, onNext, onPrev }) {
