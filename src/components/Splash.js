@@ -4,7 +4,7 @@ export default function Splash({ onStart }) {
       <div className="splash-card">
         <h1>Welcome to David&apos;s Pillow Emporium!</h1>
         <p>
-          Text me the names of the pillow cases you want. Inventory is limited.
+          Send me the names of the pillow cases you want. Inventory is shown, and limited.
         </p>
         <ul className="bullets">
           <li>The pillowcase body and cuff are cotton.</li>
@@ -13,6 +13,11 @@ export default function Splash({ onStart }) {
           <li>Tumble dry or at low heat. Iron on low heat.</li>
         </ul>
 
+        <p>
+          I used good fabric and threads, they can last for years.
+
+          Send me your experiences and I'll post them anonymously here.
+        </p>
         <button className="primary" onClick={onStart}>
           Begin
         </button>
