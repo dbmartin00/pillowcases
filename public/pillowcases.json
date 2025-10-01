@@ -1,13 +1,17 @@
 [
   {
-    "filename" : "DSC_9732.jpg",
-    "name": "Gingko Stars",
+    "filename": "green.jpg",
+    "name": "Shades of Green",
+    "quantity": 6
+  },
+  { "filename": "colorful.jpg",
+    "name": "Batik Color Riot",
     "quantity": 2
   },
   {
-    "filename" : "DSC_9719.jpg",
-    "name": "Midnight Blue & Flowers",
-    "quantity": 1
+    "filename" : "DSC_9732.jpg",
+    "name": "Gingko Stars",
+    "quantity": 2
   },
   {
     "filename" : "DSC_9721.jpg",
@@ -25,24 +29,14 @@
     "quantity": 3
   },
   {
-    "filename" : "DSC_9730.jpg",
-    "name": "Roses and Leaves",
-    "quantity" : 1
-  },
-  {
-    "filename": "DSC_9731.jpg",
-    "name": "Roses and Leaves & Accent",
-    "quantity" : 1
-  },
-  {
-    "filename": "IMG_6622.jpg",
-    "name": "Midnight Blue, Green & Yellow Garden",
-    "quantity" : 2
-  },
-  {
     "filename": "olive_leaves.jpg",
     "name": "Navy Blue, Pale Yellow & Olive Leaves",
-    "quantity" : 2
+    "quantity" : 3
+  },
+  {
+    "filename": "cobalt.jpg",
+    "name": "Cobalt Blue, Green, and Yellow",
+    "quantity": 1
   }
 ]
 
