@@ -8,6 +8,7 @@ function toImgPath(filename) {
 export default function Viewer({ item, index, total, onNext, onPrev }) {
   const touchStartX = useRef(null);
   const [imgError, setImgError] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -30,6 +31,16 @@ export default function Viewer({ item, index, total, onNext, onPrev }) {
   }
 
   const src = toImgPath(item.filename);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(item.name);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      console.error("Copy failed:", err);
+    }
+  };
 
   return (
     <div
@@ -68,6 +79,15 @@ export default function Viewer({ item, index, total, onNext, onPrev }) {
       {/* Overlay always shown */}
       <div className="caption">
         <div className="name">{item.name}</div>
+
+        {/* Copy button + copied message */}
+        <div className="copy-row">
+          <button className="copy-btn" onClick={handleCopy}>
+            Copy Pillowcase Name
+          </button>
+          {copied && <span className="copied-msg">copied ✓</span>}
+        </div>
+
         <div className="stock">{item.quantity} in stock</div>
         <div className="hint">← swipe • swipe →</div>
       </div>
